@@ -27,6 +27,26 @@ resource "aws_iam_role_policy_attachment" "ssm_managed" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
+# --- Inline policy: read-only EC2 describe permissions for Ansible dynamic inventory ---
+data "aws_iam_policy_document" "ec2_describe" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeInstances",
+      "ec2:DescribeTags",
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeSubnets",
+      "ec2:DescribeVpcs"
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_role_policy" "ec2_describe" {
+  name   = "${var.project_name}-ec2-describe-policy"
+  role   = aws_iam_role.ec2_role.id
+  policy = data.aws_iam_policy_document.ec2_describe.json
+}
 # --- Instance profile: what actually gets attached to an EC2 instance ---
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "${var.project_name}-ec2-instance-profile"
