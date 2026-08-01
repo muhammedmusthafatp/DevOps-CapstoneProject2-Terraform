@@ -1,7 +1,7 @@
 ---
-- name: Install OpenJDK 17
+- name: Install OpenJDK 21
   apt:
-    name: openjdk-17-jdk
+    name: openjdk-21-jdk
     state: present
     update_cache: yes
   become: true
