@@ -1,0 +1,26 @@
+---
+# Base configuration - applies to every host
+- name: Configure base packages on all hosts
+  hosts: all
+  become: true
+  roles:
+    - common
+    - java
+    - git
+    - docker
+
+# Jenkins agent specific configuration
+- name: Configure Jenkins agent instance
+  hosts: tag_Role_jenkins_agent
+  become: true
+  roles:
+    - jenkins_agent
+
+# App server specific configuration
+- name: Configure app server (NGINX, Kubernetes prerequisites, app deployment)
+  hosts: tag_Role_app
+  become: true
+  roles:
+    - nginx
+    - k8s_prereqs
+    - app_deploy
