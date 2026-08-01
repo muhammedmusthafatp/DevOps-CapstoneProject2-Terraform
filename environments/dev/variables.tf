@@ -17,3 +17,7 @@ variable "key_name" {
   description = "Name of the existing EC2 key pair for SSH access"
   type        = string
 }
+variable "jenkins_controller_cidr" {
+  description = "Public IP (CIDR /32) of the Jenkins controller instance"
+  type        = string
+}

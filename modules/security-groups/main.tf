@@ -12,6 +12,14 @@ resource "aws_security_group" "jenkins" {
     cidr_blocks = [var.admin_cidr]
   }
 
+ingress {
+    description = "SSH from Jenkins controller"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.jenkins_controller_cidr]
+  }
+
   ingress {
     description = "Jenkins UI from admin"
     from_port   = 8080
@@ -70,6 +78,7 @@ resource "aws_security_group" "app" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
 
   tags = {
     Name = "${var.project_name}-app-sg"
