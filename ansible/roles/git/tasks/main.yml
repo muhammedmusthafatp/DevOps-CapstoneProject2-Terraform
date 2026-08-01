@@ -1,0 +1,16 @@
+---
+- name: Install Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Verify Git installation
+  command: git --version
+  register: git_version_output
+  changed_when: false
+
+- name: Show Git version
+  debug:
+    var: git_version_output.stdout

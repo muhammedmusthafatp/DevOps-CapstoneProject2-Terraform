@@ -1,0 +1,27 @@
+---
+- name: Create Jenkins agent working directory
+  file:
+    path: /home/ubuntu/jenkins-agent
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+  become: true
+
+- name: Confirm Java is available (required for Jenkins agent.jar)
+  command: java -version
+  register: agent_java_check
+  changed_when: false
+
+- name: Show Java version for agent
+  debug:
+    var: agent_java_check.stderr_lines
+
+- name: Ensure ubuntu user's .ssh directory exists with correct permissions
+  file:
+    path: /home/ubuntu/.ssh
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0700'
+  become: true
