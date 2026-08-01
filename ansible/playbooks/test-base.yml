@@ -1,0 +1,8 @@
+---
+- name: Configure base packages on all hosts
+  hosts: all
+  become: true
+  roles:
+    - common
+    - java
+    - git

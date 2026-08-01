@@ -1,0 +1,29 @@
+---
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Upgrade all packages to latest
+  apt:
+    upgrade: dist
+  become: true
+
+- name: Install common base utilities
+  apt:
+    name:
+      - curl
+      - wget
+      - unzip
+      - ca-certificates
+      - gnupg
+      - lsb-release
+      - software-properties-common
+    state: present
+  become: true
+
+- name: Set timezone (optional, keeps logs consistent)
+  timezone:
+    name: UTC
+  become: true
