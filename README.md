@@ -368,6 +368,8 @@ The SSH-launched agent, registered and online, ready to execute Ansible/verifica
 | Elastic IP bound to the NAT Gateway | ![Elastic IP](screenshots/eip.png) |
 | Internet Gateway, attached to the VPC | ![Internet Gateway](screenshots/ig.png) |
 | Route tables (public → IGW, private → NAT) | ![Route Tables](screenshots/rt.png) |
+| S3 Remote Backend Bucket (`terraform.tfstate`) | ![S3 Backend](screenshots/s3bucket.png) |
+| DynamoDB State Lock Table (`terraform-locks`) | ![DynamoDB Lock Table](screenshots/dynamodb.png) |
 
 ---
 
