@@ -1,0 +1,7 @@
+---
+- name: Configure app server (NGINX + Kubernetes prerequisites)
+  hosts: tag_Role_app
+  become: true
+  roles:
+    - nginx
+    - k8s_prereqs

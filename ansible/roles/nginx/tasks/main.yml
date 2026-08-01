@@ -1,0 +1,39 @@
+---
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Ensure NGINX is enabled and running
+  systemd:
+    name: nginx
+    enabled: true
+    state: started
+  become: true
+
+- name: Deploy a basic health-check page
+  copy:
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>Capstone2 App</title></head>
+      <body>
+        <h1>OK</h1>
+        <p>NGINX is up and configured via Ansible.</p>
+      </body>
+      </html>
+    dest: /var/www/html/index.nginx-debian.html
+    mode: '0644'
+  become: true
+
+- name: Verify NGINX is responding locally
+  uri:
+    url: http://localhost/
+    status_code: 200
+  register: nginx_check
+
+- name: Show NGINX check result
+  debug:
+    var: nginx_check.status
