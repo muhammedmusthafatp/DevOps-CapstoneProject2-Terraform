@@ -1,0 +1,6 @@
+---
+- name: Configure Jenkins agent instance
+  hosts: tag_Role_jenkins_agent
+  become: true
+  roles:
+    - jenkins_agent
