@@ -27,6 +27,7 @@ resource "aws_instance" "jenkins_agent" {
   tags = {
     Name = "${var.project_name}-jenkins-agent"
     Role = "jenkins-agent"
+    Project = var.project_name
   }
 }
 
@@ -42,5 +43,6 @@ resource "aws_instance" "app" {
   tags = {
     Name = "${var.project_name}-app"
     Role = "app"
+    Project = var.project_name
   }
 }

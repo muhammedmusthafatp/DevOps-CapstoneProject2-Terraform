@@ -1,0 +1,15 @@
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - ap-south-2
+
+filters:
+  tag:Project: capstone2
+  instance-state-name: running
+
+keyed_groups:
+  - key: tags.Role
+    prefix: tag_Role
+
+compose:
+  ansible_host: private_ip_address
