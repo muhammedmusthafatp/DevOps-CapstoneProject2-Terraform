@@ -4,6 +4,9 @@ pipeline {
     environment {
         AWS_REGION = 'ap-south-2'
         TF_DIR     = 'environments/dev'
+        TF_VAR_admin_cidr               = '152.59.223.252/32'
+        TF_VAR_jenkins_controller_cidr  = '18.60.59.50/32'
+        TF_VAR_key_name                 = 'hyd_key1'
     }
 
     stages {
