@@ -39,6 +39,11 @@ resource "aws_instance" "app" {
   vpc_security_group_ids = [var.app_sg_id]
   key_name               = var.key_name
   iam_instance_profile   = var.instance_profile_name
+  
+  root_block_device {
+    volume_size = 20
+    volume_type = "gp3"
+  }
 
   tags = {
     Name = "${var.project_name}-app"
