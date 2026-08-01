@@ -313,61 +313,61 @@ Point a Jenkins Pipeline job at this repository with **Script Path**: `Jenkinsfi
 ### End-to-end Stage View
 A full pipeline run, all 7 stages green:
 
-![Pipeline Stage View](docs/screenshots/manual-trigger.png)
+![Pipeline Stage View](screenshots/manual-trigger.png)
 
 ### 1 — Checkout (Controller)
 The controller pulls the latest commit before planning:
 
-![Checkout Controller](docs/screenshots/checkout-controller.png)
+![Checkout Controller](screenshots/checkout-controller.png)
 
 ### 2 — Manual Approval Gate
 The pipeline pauses after `terraform plan` and waits for explicit human sign-off — satisfying the brief's approval-gate requirement:
 
-![Manual Approval](docs/screenshots/manual-approve.png)
+![Manual Approval](screenshots/manual-approve.png)
 
 ### 3 — Checkout (Agent)
 The Jenkins agent (running inside the target VPC) independently checks out the same commit before configuring hosts:
 
-![Checkout Agent](docs/screenshots/checkout-agent.png)
+![Checkout Agent](screenshots/checkout-agent.png)
 
 ### 4 — Ansible Configuration Run
 `site.yml` executing against the dynamically-discovered inventory — note the `PLAY RECAP` with zero failures across both hosts:
 
-![Ansible Playbook Run](docs/screenshots/ansible-playbook.png)
+![Ansible Playbook Run](screenshots/ansible-playbook.png)
 
 ### 5 — Application Health Verification
 The pipeline's Verify stage confirming the containerized Flask app responds correctly through NGINX:
 
-![App Health Check](docs/screenshots/app-health.png)
+![App Health Check](screenshots/app-health.png)
 
 ### 6 — Infrastructure Validation
 EC2 reachability check as part of the Verify Infrastructure stage:
 
-![EC2 Reachability](docs/screenshots/ec2-reachability.png)
+![EC2 Reachability](screenshots/ec2-reachability.png)
 
 ### 7 — NGINX Configured via Ansible
 Confirming NGINX is live and serving content, entirely provisioned by Ansible with no manual server access:
 
-![NGINX Configured](docs/screenshots/nginx-ansible-configured.png)
+![NGINX Configured](screenshots/nginx-ansible-configured.png)
 
 ### 8 — Post-Pipeline Summary
 Final pipeline confirmation message:
 
-![Post Actions](docs/screenshots/post-action.png)
+![Post Actions](screenshots/post-action.png)
 
 ### Jenkins Agent Node
 The SSH-launched agent, registered and online, ready to execute Ansible/verification stages:
 
-![Jenkins Node](docs/screenshots/node.png)
+![Jenkins Node](screenshots/node.png)
 
 ### Supporting AWS Console Evidence
 
 | Resource | Evidence |
 |---|---|
-| EC2 Instances (Jenkins agent + App server, both `Running`) | ![Instances](docs/screenshots/instancelaunched.png) |
-| Elastic IP bound to the NAT Gateway | ![Elastic IP](docs/screenshots/eip.png) |
-| Internet Gateway, attached to the VPC | ![Internet Gateway](docs/screenshots/ig.png) |
-| Route tables (public → IGW, private → NAT) | ![Route Tables](docs/screenshots/rt.png) |
+| EC2 Instances (Jenkins agent + App server, both `Running`) | ![Instances](screenshots/instancelaunched.png) |
+| Elastic IP bound to the NAT Gateway | ![Elastic IP](screenshots/eip.png) |
+| Internet Gateway, attached to the VPC | ![Internet Gateway](screenshots/ig.png) |
+| Route tables (public → IGW, private → NAT) | ![Route Tables](screenshots/rt.png) |
 
 ---
 
