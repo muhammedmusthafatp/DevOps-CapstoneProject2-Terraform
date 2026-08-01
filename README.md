@@ -128,7 +128,7 @@ flowchart LR
 
 ### End-to-End Flow (diagram)
 
-![Architecture Diagram](docs/architecture-diagram.png)
+![Architecture Diagram](screenshots/architecture-diagram.png)
 
 ---
 
